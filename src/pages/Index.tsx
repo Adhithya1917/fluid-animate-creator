@@ -8,6 +8,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import InteractiveBackground from '@/components/InteractiveBackground';
+import CustomCursor from '@/components/CustomCursor';
 
 const Index = () => {
   useEffect(() => {
@@ -45,6 +46,7 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-x-hidden">
       <InteractiveBackground />
+      <CustomCursor />
       <Navbar />
       <main className="relative z-10">
         <HeroSection />
