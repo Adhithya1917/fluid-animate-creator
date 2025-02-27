@@ -7,6 +7,7 @@ import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import InteractiveBackground from '@/components/InteractiveBackground';
 
 const Index = () => {
   useEffect(() => {
@@ -43,8 +44,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
+      <InteractiveBackground />
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <HeroSection />
         <AboutSection />
         <ServicesSection />

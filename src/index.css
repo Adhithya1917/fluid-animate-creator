@@ -59,6 +59,34 @@
     @apply bg-slate-dark text-slate-light font-sans antialiased;
     background: linear-gradient(to bottom, #0D0529, #080318);
     min-height: 100vh;
+    cursor: default;
+  }
+
+  /* Custom cursor styles */
+  .custom-cursor {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 75, 216, 0.5);
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+  }
+
+  a, button, input, textarea, [role="button"] {
+    cursor: none !important;
+  }
+
+  a:hover ~ .custom-cursor,
+  button:hover ~ .custom-cursor,
+  [role="button"]:hover ~ .custom-cursor {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 75, 216, 0.3);
   }
 
   /* Custom scrollbar */
@@ -87,6 +115,32 @@
   .card-hover:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px -5px rgba(255, 75, 216, 0.3);
+  }
+
+  /* Interactive elements */
+  .interactive-element {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .interactive-element::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,75,216,0.4) 0%, rgba(255,75,216,0) 60%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    transform: scale(0.5);
+  }
+  
+  .interactive-element:hover::after {
+    opacity: 1;
+    transform: scale(1);
   }
 
   /* Staggered animations */
@@ -145,4 +199,9 @@
 
 .button-hover:hover::before {
   left: 100%;
+}
+
+/* Magnetic element effect */
+.magnetic-element {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
