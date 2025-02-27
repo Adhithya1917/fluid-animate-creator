@@ -31,12 +31,12 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <a href="/" className="flex items-center gap-2 group">
           <img 
-            src="/lovable-uploads/0fe27875-e0b5-48af-af3c-cb11a63c4581.png" 
+            src="/lovable-uploads/logo 123.png" 
             alt="Slate Designers Logo" 
             className="h-8 md:h-10 transition-transform duration-500 group-hover:rotate-12"
             style={{ objectFit: 'contain', objectPosition: 'left' }}
           />
-          <span className="font-bold text-white text-xl hidden sm:block">SLATE DESIGNERS</span>
+          <span className="font-bold text-white text-xl hidden sm:block">Slate Designers</span>
         </a>
 
         {/* Desktop Navigation */}

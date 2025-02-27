@@ -21,12 +21,12 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-6">
               <img 
-                src="/lovable-uploads/0fe27875-e0b5-48af-af3c-cb11a63c4581.png" 
+                src="/lovable-uploads/logo 123.png" 
                 alt="Slate Designers Logo" 
                 className="h-8"
                 style={{ objectFit: 'contain' }}
               />
-              <span className="font-bold text-white text-xl">SLATE DESIGNERS</span>
+              <span className="font-bold text-white text-xl">Slate Designers</span>
             </div>
             
             <p className="text-slate-light/70 mb-6">
