@@ -33,18 +33,18 @@ const InteractiveBackground = () => {
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    // Initialize particles - reduced particle count and speed for stability
-    const particleCount = Math.min(Math.floor(window.innerWidth / 20), 80); // Even fewer particles
+    // Initialize particles
+    const particleCount = Math.min(Math.floor(window.innerWidth / 10), 150);
     const colors = ['#FF4BD8', '#A466FF', '#7B61FF', '#9C27B0', '#5E35B1'];
     
     particles.current = Array.from({ length: particleCount }, () => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      size: Math.random() * 2 + 0.5, // Smaller particles
-      speedX: (Math.random() - 0.5) * 0.08, // Drastically reduced speed
-      speedY: (Math.random() - 0.5) * 0.08, // Drastically reduced speed
+      size: Math.random() * 3 + 1,
+      speedX: (Math.random() - 0.5) * 0.3,
+      speedY: (Math.random() - 0.5) * 0.3,
       color: colors[Math.floor(Math.random() * colors.length)],
-      opacity: Math.random() * 0.3 + 0.1 // More reduced opacity
+      opacity: Math.random() * 0.5 + 0.1
     }));
 
     return () => {
@@ -67,22 +67,22 @@ const InteractiveBackground = () => {
       const dy = clientY - lastMousePosition.current.y;
       const velocity = Math.sqrt(dx * dx + dy * dy);
       
-      // Add new particles on fast mouse movement - but fewer than before
-      if (velocity > 15) { // Higher threshold for particle creation
+      // Add new particles on fast mouse movement
+      if (velocity > 10) {
         const colors = ['#FF4BD8', '#A466FF', '#7B61FF', '#9C27B0', '#5E35B1'];
-        for (let i = 0; i < 1; i++) { // Only create 1 particle at a time
+        for (let i = 0; i < 3; i++) {
           particles.current.push({
             x: clientX,
             y: clientY,
-            size: Math.random() * 2 + 1, // Even smaller particles
-            speedX: (Math.random() - 0.5) * 0.5, // Reduced speed
-            speedY: (Math.random() - 0.5) * 0.5, // Reduced speed
+            size: Math.random() * 4 + 2,
+            speedX: (Math.random() - 0.5) * 2,
+            speedY: (Math.random() - 0.5) * 2,
             color: colors[Math.floor(Math.random() * colors.length)],
-            opacity: 0.4 // Reduced opacity
+            opacity: 0.8
           });
           
-          // Keep the particle count under control - reduced maximum
-          if (particles.current.length > 100) {
+          // Keep the particle count under control
+          if (particles.current.length > 200) {
             particles.current.shift();
           }
         }
@@ -108,89 +108,47 @@ const InteractiveBackground = () => {
     const ctx = canvasRef.current.getContext('2d');
     if (!ctx) return;
 
-    // Draw background theme elements - static cosmic theme
-    const drawBackgroundTheme = () => {
-      // Create deep space gradient
-      const bgGradient = ctx.createLinearGradient(0, 0, 0, dimensions.height);
-      bgGradient.addColorStop(0, 'rgba(13, 5, 41, 0.3)');
-      bgGradient.addColorStop(1, 'rgba(8, 3, 24, 0.3)');
-      
-      // Draw subtle cosmic dust
-      const starCount = 50;
-      for (let i = 0; i < starCount; i++) {
-        const x = Math.random() * dimensions.width;
-        const y = Math.random() * dimensions.height;
-        const radius = Math.random() * 1.5; // Very small stars
-        const opacity = Math.random() * 0.2 + 0.1; // Very subtle
-        
-        ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-        ctx.fill();
-      }
-      
-      // Add a few distant nebula effects - very subtle
-      for (let i = 0; i < 3; i++) {
-        const x = Math.random() * dimensions.width;
-        const y = Math.random() * dimensions.height;
-        const radius = Math.random() * 100 + 50;
-        
-        const nebulaGradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
-        const color = i % 2 === 0 ? 'rgba(164, 102, 255, 0.03)' : 'rgba(255, 75, 216, 0.02)';
-        nebulaGradient.addColorStop(0, color);
-        nebulaGradient.addColorStop(1, 'rgba(8, 3, 24, 0)');
-        
-        ctx.beginPath();
-        ctx.fillStyle = nebulaGradient;
-        ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    };
-
     const animate = () => {
       if (!canvasRef.current) return;
       
       ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
       
-      // Draw the background theme first
-      drawBackgroundTheme();
-      
       // Update and draw particles
       particles.current.forEach((particle, index) => {
-        // Update position - with even more reduced movement speed
-        particle.x += particle.speedX * 0.5; // Further reduce movement
-        particle.y += particle.speedY * 0.5;
+        // Update position
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
         
-        // Bounce off edges with significantly reduced energy
+        // Bounce off edges
         if (particle.x < 0 || particle.x > dimensions.width) {
-          particle.speedX *= -0.7; // Further reduce bounce energy
+          particle.speedX *= -1;
         }
         
         if (particle.y < 0 || particle.y > dimensions.height) {
-          particle.speedY *= -0.7; // Further reduce bounce energy
+          particle.speedY *= -1;
         }
         
-        // Mouse interaction - extremely gentle attraction to mouse
+        // Mouse interaction - attract particles when mouse is moving
         if (isMouseMoving) {
           const dx = mousePosition.x - particle.x;
           const dy = mousePosition.y - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxDistance = 120; // Even more reduced interaction range
+          const maxDistance = 200;
           
           if (distance < maxDistance) {
-            // Calculate force based on distance - minimal force
-            const force = (maxDistance - distance) / maxDistance * 0.3;
+            // Calculate force based on distance
+            const force = (maxDistance - distance) / maxDistance;
             
-            // Attract particles towards mouse - minimal attraction
-            particle.speedX += (dx / distance) * force * 0.005;
-            particle.speedY += (dy / distance) * force * 0.005;
+            // Attract particles towards mouse
+            particle.speedX += (dx / distance) * force * 0.02;
+            particle.speedY += (dy / distance) * force * 0.02;
             
-            // Almost no random movement
-            particle.speedX += (Math.random() - 0.5) * 0.02;
-            particle.speedY += (Math.random() - 0.5) * 0.02;
+            // Add some random movement
+            particle.speedX += (Math.random() - 0.5) * 0.1;
+            particle.speedY += (Math.random() - 0.5) * 0.1;
             
-            // Tight speed limit
-            const maxSpeed = 0.5;
+            // Limit speed
+            const maxSpeed = 2;
             const currentSpeed = Math.sqrt(particle.speedX * particle.speedX + particle.speedY * particle.speedY);
             if (currentSpeed > maxSpeed) {
               particle.speedX = (particle.speedX / currentSpeed) * maxSpeed;
@@ -198,9 +156,9 @@ const InteractiveBackground = () => {
             }
           }
         } else {
-          // Rapidly slow down particles when mouse is not moving
-          particle.speedX *= 0.95;
-          particle.speedY *= 0.95;
+          // Gradually slow down particles when mouse is not moving
+          particle.speedX *= 0.99;
+          particle.speedY *= 0.99;
         }
         
         // Draw particle
@@ -210,19 +168,17 @@ const InteractiveBackground = () => {
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
         
-        // Connect particles that are close to each other - even fewer connections
-        particles.current.slice(index + 1).forEach((otherParticle, otherIndex) => {
-          if (otherIndex % 4 !== 0) return; // Skip 3/4 of connections to improve performance
-          
+        // Connect particles that are close to each other
+        particles.current.slice(index + 1).forEach(otherParticle => {
           const dx = particle.x - otherParticle.x;
           const dy = particle.y - otherParticle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 70) { // Even more reduced connection distance
+          if (distance < 100) {
             ctx.beginPath();
             ctx.strokeStyle = particle.color;
-            ctx.globalAlpha = 0.1 * (1 - distance / 70); // Further reduced opacity
-            ctx.lineWidth = 0.2; // Even thinner lines
+            ctx.globalAlpha = 0.2 * (1 - distance / 100);
+            ctx.lineWidth = 0.5;
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
             ctx.stroke();
@@ -230,18 +186,18 @@ const InteractiveBackground = () => {
         });
       });
       
-      // Draw glow around mouse when moving - very subtle glow
+      // Draw glow around mouse when moving
       if (isMouseMoving) {
         const gradient = ctx.createRadialGradient(
           mousePosition.x, mousePosition.y, 5,
-          mousePosition.x, mousePosition.y, 60 // Even smaller radius
+          mousePosition.x, mousePosition.y, 100
         );
-        gradient.addColorStop(0, 'rgba(255, 75, 216, 0.15)'); // Further reduced opacity
+        gradient.addColorStop(0, 'rgba(255, 75, 216, 0.3)');
         gradient.addColorStop(1, 'rgba(255, 75, 216, 0)');
         
         ctx.beginPath();
         ctx.fillStyle = gradient;
-        ctx.arc(mousePosition.x, mousePosition.y, 60, 0, Math.PI * 2);
+        ctx.arc(mousePosition.x, mousePosition.y, 100, 0, Math.PI * 2);
         ctx.fill();
       }
       
@@ -258,21 +214,10 @@ const InteractiveBackground = () => {
   }, [dimensions, mousePosition, isMouseMoving]);
 
   return (
-    <>
-      {/* Static Background Theme Elements */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-b from-slate-dark to-slate-darker">
-        {/* Large gradient orbs that add depth */}
-        <div className="absolute top-0 right-0 w-[80vw] h-[40vh] bg-purple-900/5 rounded-full filter blur-[100px] transform translate-x-1/3 -translate-y-1/3"></div>
-        <div className="absolute bottom-0 left-0 w-[80vw] h-[40vh] bg-slate-accent/5 rounded-full filter blur-[120px] transform -translate-x-1/3 translate-y-1/3"></div>
-        <div className="absolute top-1/2 left-1/2 w-[50vw] h-[50vh] bg-indigo-900/5 rounded-full filter blur-[80px] transform -translate-x-1/2 -translate-y-1/2"></div>
-      </div>
-      
-      {/* Interactive Canvas for particles */}
-      <canvas
-        ref={canvasRef}
-        className="fixed top-0 left-0 w-full h-full pointer-events-none z-1"
-      />
-    </>
+    <canvas
+      ref={canvasRef}
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+    />
   );
 };
 
