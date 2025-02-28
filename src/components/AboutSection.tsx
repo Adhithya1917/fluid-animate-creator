@@ -124,32 +124,7 @@ const AboutSection = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-20">
-          <Stat 
-            icon={<Trophy className="w-6 h-6 text-slate-accent" />}
-            value="150+"
-            label="Projects Completed"
-            delay={200}
-          />
-          <Stat 
-            icon={<Users className="w-6 h-6 text-slate-accent" />}
-            value="50+"
-            label="Happy Clients"
-            delay={400}
-          />
-          <Stat 
-            icon={<Clock className="w-6 h-6 text-slate-accent" />}
-            value="10+"
-            label="Years Experience"
-            delay={600}
-          />
-          <Stat 
-            icon={<Bookmark className="w-6 h-6 text-slate-accent" />}
-            value="99%"
-            label="Client Satisfaction"
-            delay={800}
-          />
-        </div>
+        
       </div>
     </section>
   );

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
@@ -29,14 +28,14 @@ const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="/" className="flex items-center gap-2 group">
+        <a href="/" className="flex items-center group">
           <img 
             src="/lovable-uploads/logo 123.png" 
             alt="Slate Designers Logo" 
             className="h-8 md:h-10 transition-transform duration-500 group-hover:rotate-12"
             style={{ objectFit: 'contain', objectPosition: 'left' }}
           />
-          <span className="font-bold text-white text-xl hidden sm:block">Slate Designers</span>
+          <span className="font-jost font-bold text-white text-xl hidden sm:block">Slate Designers</span>
         </a>
 
         {/* Desktop Navigation */}

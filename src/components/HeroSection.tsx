@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 
 const HeroSection = () => {
@@ -49,11 +48,8 @@ const HeroSection = () => {
                 Minimizing Effort and <span className="gradient-text">Maximizing Value</span>
               </h1>
               <p className="text-lg text-slate-light/80 mt-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                Elevate Your Brand with a Website That Works.<br />
-                Modern. Fast. User-friendly.
-              </p>
-              <p className="text-slate-light/70 mt-2 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                We design websites that help your business grow and stand out in the digital world.
+              A sophisticated digital services agency, blending AI-driven innovation with design, development, and automation. 
+              We craft seamless, intelligent solutions that elevate brands with effortless precision.
               </p>
             </div>
             
@@ -68,7 +64,7 @@ const HeroSection = () => {
           </div>
           
           <div className="relative flex justify-center">
-            <div className="hero-image relative w-full max-w-lg transition-transform duration-200 ease-out animate-float">
+            <div className="hero-image relative w-full max-w-lg transition-transform ease-out animate-float">
               <img 
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" 
                 alt="Web Design" 

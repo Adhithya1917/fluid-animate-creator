@@ -19,7 +19,7 @@ const Footer = () => {
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center mb-6">
               <img 
                 src="/lovable-uploads/logo 123.png" 
                 alt="Slate Designers Logo" 
@@ -33,18 +33,6 @@ const Footer = () => {
               We create digital experiences that stand out. Our team of designers and developers build custom websites and applications that help businesses grow.
             </p>
             
-            <div className="flex gap-4">
-              {['facebook', 'twitter', 'instagram', 'linkedin'].map((platform) => (
-                <a 
-                  key={platform}
-                  href={`#${platform}`} 
-                  className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-slate-accent/20 transition-colors"
-                  aria-label={`Follow us on ${platform}`}
-                >
-                  <span className="capitalize">{platform.charAt(0)}</span>
-                </a>
-              ))}
-            </div>
           </div>
           
           <div>

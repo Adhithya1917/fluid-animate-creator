@@ -1,5 +1,4 @@
-
-import { useRef, useEffect, useState } from 'react';
+/*import { useRef, useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -210,4 +209,4 @@ const ProjectsSection = () => {
   );
 };
 
-export default ProjectsSection;
+export default ProjectsSection;*/

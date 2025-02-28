@@ -4,7 +4,6 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import AboutSection from '@/components/AboutSection';
-import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import InteractiveBackground from '@/components/InteractiveBackground';
@@ -31,9 +30,12 @@ const Index = () => {
 
     // Preload any important assets
     const imagesToPreload = [
-      "/lovable-uploads/0fe27875-e0b5-48af-af3c-cb11a63c4581.png",
+      "/lovable-uploads/logo 123.png",
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
     ];
 
     imagesToPreload.forEach(src => {
@@ -50,7 +52,6 @@ const Index = () => {
         <HeroSection />
         <AboutSection />
         <ServicesSection />
-        <ProjectsSection />
         <ContactSection />
       </main>
       <Footer />
